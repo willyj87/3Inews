@@ -1,0 +1,26 @@
+body {
+        font-family: "Roboto",sans-serif;
+        font-weight: 100;
+        font-size:14px;
+}
+body > header{
+ background-color: rgba(57, 100, 199, 1);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+#accueil{
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.butonLabel{
+    color: rgba(57, 100, 199, 1);
+}
+.clear{
+    clear: both;
+}
+#btconnexion {
+    background-color: rgba(57, 100, 199, 1);
+    color: white;
+}
