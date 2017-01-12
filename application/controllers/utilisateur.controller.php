@@ -22,14 +22,13 @@ class UtilisateurController extends Controller{
 
     public function __construct()
     {   
-        $this->redirectUnauthenticated('?controller=index&action=index');
-        $this->setDefaultActionName('lister');
+        $this->redirectUnauthenticated('?controller=index');
     }
 
     public function listerAction(){
         $page = Page::getInstance();
-        $page->setTemplate("application");
-        $page->setView("utilisateur-liste");
+        $page->setTemplate("news");
+        $page->setView("liste-utilisateurs");
         $model = new UtilisateurModel();
         $page->utilisateurs = $model->lister();
         $message = Messenger::getMessage();
@@ -114,6 +113,7 @@ class UtilisateurController extends Controller{
     public function deconnecterAction(){
         $auth = Authentication::getInstance();
         $auth->logout();
-        HttpHelper::redirect('?controller=utilisateur&action=lister');
+        HttpHelper::redirect('?controller=index');
     }
+  
 }

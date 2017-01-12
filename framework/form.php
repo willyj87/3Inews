@@ -59,7 +59,7 @@ abstract class Form
         $finalM = strtolower($method);
         $this->_html = APPLICATION_PATH.'/forms/html/'.$finalM.'.form-html.php';
         if(!is_readable($this->_html)){
-            throw new Error("Fichier formulaire non lisible");
+            throw new Error("Fichier formulaire non existant");
         }
         if (file_get_contents($this->_html,$this->_formId) === false){
             throw new Error('Absence de _formId dans le formulaire');

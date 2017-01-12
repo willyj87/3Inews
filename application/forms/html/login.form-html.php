@@ -8,7 +8,6 @@
 namespace inews;
 defined("3INEWS") or die("Access Denied");
 ?>
-
                     <form id="login-form" method="POST" action="<?php echo $this->getAction();?>" class="form-horizontal butonLabel">
                         <div class="form-group">
                             <div class="col-sm-3">

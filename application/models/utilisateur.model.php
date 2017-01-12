@@ -18,7 +18,7 @@ class UtilisateurModel implements AuthenticationInterface
     public function lister() {
         $db = Database::getInstance();
 
-        $sql = "SELECT * FROM utilisateurs ORDER BY nom, prenom";
+        $sql = "SELECT * FROM utilisateur ORDER BY nom, prenom";
         try {
             $req  = $db->prepare($sql);
             $req->execute();
@@ -30,7 +30,7 @@ class UtilisateurModel implements AuthenticationInterface
     public function supprimer($id){
         $db = Database::getInstance();
 
-        $sql = "DELETE FROM utilisateurs WHERE id = :id";
+        $sql = "DELETE FROM utilisateur WHERE id = :id";
         
         try{
             $req = $db->prepare($sql);
@@ -51,7 +51,7 @@ class UtilisateurModel implements AuthenticationInterface
         $db = Database::getInstance();
         $auth = Authentication::getInstance();
         $mdp = $auth->hash($data['motdepasse'],$sqlTime);
-        $sql = "INSERT INTO utilisateurs SET nom=:nom, prenom=:prenom, login=:login, email=:email, motdepasse=:mdp, creation=:creation ";
+        $sql = "INSERT INTO utilisateur SET nom=:nom, prenom=:prenom, login=:login, email=:email, motdepasse=:mdp, creation=:creation ";
         try {
             $req = $db->prepare($sql);
             $req->bindValue(':nom', $data['nom']);
@@ -73,7 +73,7 @@ class UtilisateurModel implements AuthenticationInterface
     public function loginExistant($login, $id){
         $db = Database::getInstance();
         if($id != 0 ){
-            $sql = "SELECT COUNT('login') FROM utilisateurs WHERE login=:login AND id!=:id";
+            $sql = "SELECT COUNT('login') FROM utilisateur WHERE login=:login AND id!=:id";
             try {
                 $req = $db->prepare($sql);
                 $req->bindValue(':login', $login);
@@ -83,7 +83,7 @@ class UtilisateurModel implements AuthenticationInterface
                 die('Erreur SQL '.$ex->getMessage());
             }
         }else{
-            $sql = "SELECT COUNT('login') FROM utilisateurs WHERE login=:login";
+            $sql = "SELECT COUNT('login') FROM utilisateur WHERE login=:login";
             try {
                 $req = $db->prepare($sql);
                 $req->bindValue(':login', $login);
@@ -108,10 +108,29 @@ class UtilisateurModel implements AuthenticationInterface
     public function lire($id){
         $db = Database::getInstance();
 
-        $sql = "SELECT * FROM utilisateurs WHERE id=:id";
+        $sql = "SELECT * FROM utilisateur WHERE id=:id";
         try{
             $req = $db->prepare($sql);
             $req->bindValue(':id',$id);
+            $req->execute();
+        }catch (\PDOException $ex){
+            die('Erreur SQL '.$ex->getMessage());
+        }
+        return $req->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**Methode de recherche d'ulisateur par login pour la redirection admin
+     * @param $login
+     * @return mixed
+     * @throws \F3il\Error
+     */
+    public function lirelogin($login){
+        $db = Database::getInstance();
+
+        $sql = "SELECT * FROM utilisateur WHERE login=:login";
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':login',$login);
             $req->execute();
         }catch (\PDOException $ex){
             die('Erreur SQL '.$ex->getMessage());
@@ -125,7 +144,7 @@ class UtilisateurModel implements AuthenticationInterface
         $time = $lecture['creation'];
         $mdp = $auth->hash($data['motdepasse'],$time);
         if ($data['motdepasse'] == ''){
-            $sql = "UPDATE utilisateurs SET nom=:nom,prenom=:prenom,login=:login,email=:email WHERE id=:id";
+            $sql = "UPDATE utilisateur SET nom=:nom,prenom=:prenom,login=:login,email=:email WHERE id=:id";
             try{
                 $req = $db->prepare($sql);
                 $req->bindValue(':id',$data['id']);
@@ -140,7 +159,7 @@ class UtilisateurModel implements AuthenticationInterface
         }
         else {
 
-            $sql = "UPDATE utilisateurs SET nom=:nom,prenom=:prenom,login=:login,email=:email,motdepasse=:motdepasse WHERE id=:id";
+            $sql = "UPDATE utilisateur SET nom=:nom,prenom=:prenom,login=:login,email=:email,motdepasse=:motdepasse WHERE id=:id";
             try {
                 $req = $db->prepare($sql);
                 $req->bindValue(':id', $data['id']);
@@ -176,7 +195,7 @@ class UtilisateurModel implements AuthenticationInterface
         // TODO: Implement auth_getUserByLogin() method.
         $db = Database::getInstance();
 
-        $sql = "SELECT * FROM utilisateurs WHERE login=:login";
+        $sql = "SELECT * FROM utilisateur WHERE login=:login";
         try{
             $req = $db->prepare($sql);
             $req->bindValue(':login',$login);
@@ -196,7 +215,7 @@ class UtilisateurModel implements AuthenticationInterface
         // TODO: Implement auth_getSalt() method.
         $db = Database::getInstance();
 
-        $sql = "SELECT creation FROM utilisateurs WHERE id=:id";
+        $sql = "SELECT creation FROM utilisateur WHERE id=:id";
         try{
             $req = $db->prepare($sql);
             $req->bindValue(':id',$user['id']);
