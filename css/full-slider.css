@@ -1,0 +1,36 @@
+.accueil-con{
+    width: 12%;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: white !important;
+    margin-top: 10px;   font-size:0.9em !important;
+    color: #337CBB !important;
+}
+.accueil-con:hover{
+    border-radius: 10px 10px;
+    box-shadow: none;
+    text-decoration: none;
+    color: #9acfea;
+}
+#accueil-caroussel{
+    margin-top: 0px;
+}
+.carousel img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+#acccueil-btn{
+
+}
+body{
+    background-color: #152836
+}
+.carousel-control span{
+    position: fixed;
+    top: 90%;
+}

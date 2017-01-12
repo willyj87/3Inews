@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    
+    <head>
+       
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        
+        <!-- Latest compiled and minified CSS -->
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<!--<link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+        
+
+
+        
+        
+        <title>Gestion des utilisateurs</title>
+        
+    </head>
+    
+    
+   
+    <body>
+        <div class="container" style="/*border: 1px solid  #737373;*/">
+            <header >
+                <div class="container-fluid">
+                    <div class="row"  id="ligne-nav" >
+                        <h4 class="col-md-2"><a href="#" id="navig">3inews</a></h4>
+                        <h4 class="col-md-1"><a href="#" id="navig">Diffusion</a></h4>
+                        <h4 class="col-md-7"><a href="#" id="navig">Utilisateurs</a></h4>
+                    <h4 class="col-md-2"><a href="#">
+                        <select  id="util"  >
+                          <option value=gauche >Ruchaud</option>
+                          <option value=droite>Oulad Moussa</option>
+                          <option value=centre>centre</option>
+                        </select></a></h4>
+                </div>
+                </div>
+            </header>
+            
+            <div class="container-fluid" style="border: 2px solid #000; /*padding-bottom: 20px;*/">    
+                <h1 style="font-size:3.5em; /*margin-left: 20px;*/ border-bottom: 2px solid black; " >Utilisateurs</h1>
+                <div   style="margin-left: 20px; margin-right: 20px; ">
+                
+                <div class="row" >
+                
+                <div class="col-md-9" >
+                
+                </div>
+             
+                <div class="col-md-3" >
+                <button style=" padding: 2px;   font-size:24px;   width: 180px;  height: 40px; background-color: #204d74; color:#fff">Ajouter</button>
+                </div>
+                 
+                </div>
+                    <br><br><br><br><br>
+                    <div class="container-fluid">
+                        <div class="row ">
+                            <div class="col-md-12 cols1">
+                                <table class="table" style="width: 90%; margin-left:47px; font-size: 25px;  ">
+                                   
+                                    <tr  id="bordure-ligne"   style="background-color: #398439; color:#fff;" >
+                                            <th id="bordure-col" style="border-top:0px;"> id</th>
+                                            <th id="bordure-col" style="border-top:0px;">Nom - Prénom</th>
+                                            <th id="bordure-col"  style="border-top:0px;">Admin</th>
+                                            <th id="bordure-col" style="border-top:0px;">Login</th>
+                                            <th style="border-left:0px; border-top:0px;">Commande</th>
+                                        </tr>
+                                    
+                                   
+                                        <tr id="bordure-ligne">
+                                            <td id="bordure-col">4</td>
+                                            <td id="bordure-col">Gaudin Hervé</td>
+                                            <td id="bordure-col"></td>
+                                            <td id="bordure-col">gaudinh</td>
+                                            <td style="text-align: right;"> 
+                                                <a href="#">   <span class="glyphicon glyphicon-pencil" id="icone-test" ></span></a>
+                                                <a href="#"><span class="glyphicon glyphicon-trash" id="icone-test"></span></a>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr id="bordure-ligne">
+                                            <td  id="bordure-col">2</td>
+                                            <td id="bordure-col">Oulad Moussa</td>
+                                            <td id="bordure-col" style="text-align: center; "><span class="glyphicon  glyphicon-ok-sign" style="color: green;"></span> </td>
+                                            <td id="bordure-col">mom</td>
+                                            <td style="text-align: right;">
+                                                <a href="#">   <span class="glyphicon glyphicon-pencil" id="icone-test" ></span></a>
+                                                <a href="#"><span class="glyphicon glyphicon-trash" id="icone-test"></span></a>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr id="bordure-ligne">
+                                            <td id="bordure-col">8</td>
+                                            <td id="bordure-col">Ruchaud William</td>
+                                            <td id="bordure-col"></td>
+                                            <td id="bordure-col">ruchaudw</td>
+                                            <td style="text-align: right;">
+                                                <a href="#">   <span class="glyphicon glyphicon-pencil" id="icone-test" ></span></a>
+                                                <a href="#"><span class="glyphicon glyphicon-trash" id="icone-test"></span></a>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr id="bordure-ligne">
+                                            <td id="bordure-col"><br></td>
+                                            <td id="bordure-col"></td>
+                                            <td id="bordure-col"></td>
+                                            <td id="bordure-col"></td>
+                                            <td></td>
+                                        </tr>
+                                        
+                                        <tr >
+                                            <td id="bordure-col" style="border-bottom:0px;" ><br></td>
+                                            <td id="bordure-col" style="border-bottom:0px;" ></td>
+                                            <td id="bordure-col" style="border-bottom:0px;" ></td>
+                                            <td id="bordure-col" style="border-bottom:0px;" ></td>
+                                            <td ></td>
+                                        </tr>
+                                        
+                                        
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                      
+                    
+                    
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

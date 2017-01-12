@@ -4,7 +4,7 @@ body {
         font-size:14px;
 }
 body > header{
- background-color: rgba(57, 100, 199, 1);
+ background-color: #337CBB;
     color: white;
     padding: 40px;
     text-align: center;
@@ -15,12 +15,12 @@ body > header{
     margin-right: auto;
 }
 .butonLabel{
-    color: rgba(57, 100, 199, 1);
+    color: #337CBB;
 }
 .clear{
     clear: both;
 }
 #btconnexion {
-    background-color: rgba(57, 100, 199, 1);
+    background-color: #337CBB;
     color: white;
 }

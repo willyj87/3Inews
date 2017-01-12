@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<!--<link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+        <title>Edition de news</title>
+        
+    </head>
+    
+    <body>
+        <div class="container-fluid" style="/*border: 1px solid  #737373;*/">
+            <header >
+                <div class="container-fluid">
+                    <div class="row" style="  background-color: #204d74; height:50px; font-size: 133px;">
+                        <h4 class="col-md-1"><a href="#" style="color: #fff;">3inews</a></h4>
+                        <h4 class="col-md-9"><a href="#" style="color: #fff;">Mes news</a></h4>
+                    <h4 class="col-md-2"><a href="#">
+                        <select   style='color: #fff; width:150px; height: 40px; background-color:#204d74; border:0px; margin-top: -10px;'  >
+                          <option value=gauche >Ruchaud</option>
+                          <option value=droite>Oulad Moussa</option>
+                          <option value=centre>centre</option>
+                        </select></a></h4>
+                </div>
+                </div>
+            </header>
+            
+            <div class="container-fluid" style="border: 2px solid #000; padding-bottom: 20px;">
+                
+            <h1 style="font-size:3.5em; /*margin-left: 20px;*/ border-bottom: 2px solid black; " >Edition de news</h1>
+            
+            <div   style="margin-left: 20px; margin-right: 20px; ">
+                
+                <div class="row">
+                
+                <div class="col-md-8">
+                <button style=" padding: 2px;   font-size:24px;   width: 180px;  height: 40px; color: #23527c;">Tester</button>
+                </div>
+                
+                <div class="col-md-2">
+                <button style=" padding: 2px;   font-size:24px;   width: 180px;  height: 40px; color: #23527c;">Annuler</button>
+                </div>
+                
+                <div class="col-md-2">
+                <button style=" padding: 2px;   font-size:24px;   width: 180px;  height: 40px; background-color: #204d74; color:#fff">Enregistrer</button>
+                </div>
+                </div>
+                
+                <br><br>
+                
+                <div class="row">
+                    
+                    <div class="col-md-6" style="border-right: 2px solid black; ">
+                        <img    class="img-responsive" src="images/poisson1.jpg" alt="mer" style="width: 85%;"/>
+                        <br><br><br>
+                        <div class="form-inline">
+                            <label   style='font-size:20px; '>Texte : </label>
+                            <input type="text" name="texte" value="On s'en fiche"  style='font-size:24px; width:460px; height: 45px; ' class='form-control' />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form method="GET" action="#">
+                        <p style="font-size: 3em; color: #2e6da4;">Paramètre</p> 
+                        
+                        <br>
+                        <br>
+                        <div class="form-inline">
+                        <label style='font-size:20px; '>Couleur texte :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="texte" value="#FFFFFF" class='form-control' style='font-size:24px; width:430px; height: 45px; '  >
+                        </div>
+                        <br><br><br>
+                        <div class="form-inline">
+                        <label style='font-size:20px; '>Couleur bandeau :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="couleur_bandeau" value="#000000" class='form-control' style='font-size:24px; width:430px; height: 45px; '  >
+                        </div>
+                        <br><br><br>
+                        <div class="form-inline">
+                        <label style='font-size:20px; '>Position bandeau :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <select  class="form-control" style='font-size:24px; width:430px; height: 45px; '  >
+                          <option value=gauche >gauche</option>
+                          <option value=droite>droite</option>
+                          <option value=centre>centre</option>
+                        </select>
+                        </div>
+                        <br><br><br>
+                        <div class="form-inline">
+                            <label style='font-size:20px; '>Taille bandeau :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="taille_bandeau" value="20" class='form-control' style='font-size:24px; width:130px; height: 45px; '  >&nbsp;&nbsp;
+                        <input type="text" name="pr"  placeholder="%" style="font-size: 24px; border:0px;" class="form-control">
+                        
+                        </div>
+                        
+                        <br><br><br>
+                        <div class="form-inline">
+                            <label style='font-size:20px; '>Taille texte :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="taille_texte" value="28" class='form-control' style='font-size:24px; width:130px; height: 45px; '  >&nbsp;&nbsp;
+                        <input type="text" name="pixel"  placeholder="px" style="font-size: 24px; border:0px;" class="form-control">
+                        
+                        </div>
+                        
+                        
+                        </form>
+                    </div>
+                    
+                </div>
+                <br><br>
+                <div class="row" style="border-top:2px solid black;">
+                    <div class="col-md-10" style="font-size: 30px;  font-weight: bold; margin-top: 10px; margin-right:0px;">
+                      Les images
+                    </div>
+                    
+                    <div class="col-md-2" style="border-right:11px;">
+                     <button style=" padding: 2px;  font-size:24px;   width: 180px;  height: 40px; background-color: #204d74; color:#fff">Ajouter</button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class = "col-md-1">
+                        <img class="img-responsive" src="images/poisson1.jpg" style="width: 120%;" alt="mer"/>
+                    </div>
+                    <div class = "col-md-1">
+                        <img class="img-responsive" src="images/poisson1.jpg" style="width: 120%;" alt="mer"/>
+                    </div>
+                    <div class = "col-md-1">
+                        <img class="img-responsive" src="images/poisson1.jpg" style="width: 120%;" alt="mer"/>
+                    </div>
+                    <div class = "col-md-1">
+                        <img class="img-responsive" src="images/poisson1.jpg" style="width: 120%;" alt="mer"/>
+                    </div>
+                </div>
+            </div> 
+            
+            
+            
+            
+            
+            </div>
+            
+        </div>
+        
+    </body>
+</html>

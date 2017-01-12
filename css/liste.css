@@ -1,0 +1,30 @@
+div button {
+    background-color: #337CBB; color: white;
+}
+div button:hover{
+    border-radius: 10px 10px;
+    color: white !important;
+    box-shadow: 0 20px 10px -10px #9acfea;
+}
+#liste-entete{
+    margin-bottom: 20px;
+}
+table th{
+    background-color: #337CBB;
+    color: white;
+    font-weight: normal;
+    text-align: center;
+}
+table{
+    text-align: center;
+
+}
+table td+td:before{
+    border-style: dotted;
+    border-color: gray;
+    border-width: thin;
+}
+table span{
+    text-align: center;
+    color: #337CBB;
+}
