@@ -30,7 +30,7 @@ class UtilisateurController extends Controller{
         $page->setTemplate("news");
         $page->setView("liste-utilisateurs");
         $model = new UtilisateurModel();
-        $page->utilisateurs = $model->lister();
+        $page->users = $model->lister();
         $message = Messenger::getMessage();
         if($message!=false)
             Messages::addMessage($message,0);
@@ -91,24 +91,25 @@ class UtilisateurController extends Controller{
     public function creerAction(){
         $page = Page::getInstance();
         $creerModel = new UtilisateurModel();
-        $page->setTemplate('application');
+        $page->setTemplate('news');
         $page->setView('form');
-        $test = new UtilisateurForm('?controller=utilisateur&action=creer');
-        $test->id = 0;
-        $page->testform = $test;
-        if ($test->isSubmitted()==false){
+        $userform = new UserForm('?controller=utilisateur&action=creer');
+        $userform->id = 0;
+        $page->liste_user = $userform;
+        if ($userform->isSubmitted()==false){
             return;
         }
-        $page->testform->loadData(INPUT_POST);
-        $valid = $test->isValid();
+        $page->liste_user->loadData(INPUT_POST);
+        $valid = $userform->isValid();
         if ($valid == false){
             return;
         }
-        $data = $test->getData();
+        $data = $userform->getData();
         if (key($data) != 'id' || key($data) != 'creation')
             $creerModel->creer($data);
         Messenger::setMessage("L'utilisateur ".$data['nom']." ".$data['prenom']." a bien été enregistré");
         HttpHelper::redirect('?controller=utilisateur&action=lister');
+
     }
     public function deconnecterAction(){
         $auth = Authentication::getInstance();

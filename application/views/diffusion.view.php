@@ -24,87 +24,50 @@ $this->setPageTitle('Diffusion de News');
         </form>
         <div class="col-md-12">
             <table class="table table-responsive diff-tab-principal">
-                <tr>
-                    <td>
-                        <h2>1</h2>
-                    </td>
-                    <td>
-                        <img src="images/alpes.jpg" alt="news1" class="img-responsive img-thumbnail diff-img"><p>Les alpes</p>
-                    </td>
-                    <td>
-                      <table class="diff-tab-secondaire">
-                          <tr>
-                              <td><a href="#">Par : william bebe</a></td>
-                          </tr>
-                          <tr>
-                              <td><p>Le : 26/11/2016</p></td>
-                          </tr>
-                      </table>
-                    </td>
-                    <td>
-                        <h2>15s</h2>
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></a>
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h2>2</h2>
-                    </td>
-                    <td>
-                        <img src="images/bynigth.jpg" alt="news2" class="img-responsive img-thumbnail diff-img"><p>La nuit</p>
-                    </td>
-                    <td>
+                <?php
+                foreach ($this->news as $data){
+                    ?>
+                    <tr>
+                        <td>
+                            <h2><?php echo $data['ordre']?></h2>
+                        </td>
+                        <td>
+                            <?php
+                            if (is_array($data))
+                                $texte = $data['texte'];
+                            echo '<img src="data:image/jpeg;base64,'.base64_encode( $data['image'] ).'" alt="news1" class="img-responsive img-thumbnail diff-img"/>'."<p>".$texte."</p>";
+                            ?>
+                        </td>
+                        <td>
                         <table class="diff-tab-secondaire">
                             <tr>
-                                <td><a href="#">Par : Thomas Mbede</a></td>
+                                <td><a href="#">
+                                        <?php
+                                            $nomuser = $this->usernews->newsuser($data['id']);
+                                        foreach ($nomuser as $nom){
+                                            echo 'Par : '.$nom['nom'].' '.$nom['prenom'];
+                                        }
+                                        ?>
+                                    </a></td>
                             </tr>
                             <tr>
-                                <td><p>Le : 02/12/2016</p></td>
+                                <td><p>Le : <?php echo $data['date']?></p></td>
                             </tr>
                         </table>
-                    </td>
-                    <td>
-                        <h2>15s</h2>
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></a>
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h2>3</h2>
-                    </td>
-                    <td>
-                        <img src="images/battelfied.jpg" alt="news3" class="img-responsive img-thumbnail diff-img"><p>Battlefield</p>
-                    </td>
-                    <td>
-                        <table class="diff-tab-secondaire">
-                            <tr>
-                                <td><a href="#">Par : william bebe</a></td>
-                            </tr>
-                            <tr>
-                                <td><p>Le : 15/01/2017</p></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <h2>15s</h2>
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></a>
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            <h2><?php echo $data['duree'].'s';?></h2>
+                        </td>
+                        <td>
+                            <a href="#"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></a>
+                        </td>
+                        <td>
+                            <a href="#"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
     </div>
@@ -116,11 +79,11 @@ $this->setPageTitle('Diffusion de News');
                         Trier par <i class="fa fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu clean">
-                        <li class="dropdown-header diff-drop-head"><p>Ordre alphabetique(Rédacteur)</p></li>
+                        <li class="dropdown-header diff-drop-head"><p>Ordre alphabetique</p></li>
                         <li><a href="#">Croissant</a></li>
                         <li><a href="#">Decroissant</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header diff-drop-head"><p>Ordre Chronologique(Création)</p></li>
+                        <li class="dropdown-header diff-drop-head"><p>Ordre Chronologique</p></li>
                         <li><a href="#">Croissant</a></li>
                         <li><a href="#">Decroissant</a></li>
                     </ul>

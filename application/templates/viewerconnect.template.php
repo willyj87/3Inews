@@ -16,15 +16,18 @@ defined('3INEWS') or die('Acces Denied');
     <link rel="stylesheet" href= "vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href= "css/3in.css"/>
     <link rel="stylesheet" href= "css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/full-slider.css">
+    <link rel="stylesheet" href= "css/redac.css"/>
     [%STYLESHEETS%]
 </head>
 <body>
-<header>
+<header id="head">
     <nav class="navbar navbar-default" id="nav">
         <div class="container-fluid">
             <a class="navbar-brand" href="?controller=index&action=viewerconnect">3Inews</a>
             <ul class="nav navbar-nav">
-                <li><a class="nav navbar-nav" href="?controller=news">Mes news</a></li>
+                <li><a class="navbar-left" href="?controller=news&action=diffusion">Diffusion</a></li>
+                <li><a class="nav navbar-nav" href="?controller=news&action=lister">Utilisateurs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

@@ -24,7 +24,7 @@ defined('3INEWS') or die('Acces Denied');
 <header>
     <nav class="navbar navbar-default" id="nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="?controller=index&action=viewerconnect">3Inews</a>
+            <a class="navbar-brand" href="?controller=index">3Inews</a>
             <a class="btn  navbar-right accueil-con" id="acccueil-btn" type="button" href="?controller=index&action=index"> Se connecter</a>
         </div>
     </nav>

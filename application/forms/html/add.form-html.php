@@ -9,7 +9,7 @@ namespace inews;
 defined("3INEWS") or die("Access Denied");
 ?>
 
-<form id="edition-form" method="POST" action="#" class="form-horizontal">
+<form id="add-form" method="POST" action="<?php echo $this->getAction();?>" class="form-horizontal">
                 <h3 id="#param">Paramètre</h3>
                 <br>
                 <br>
@@ -58,4 +58,5 @@ defined("3INEWS") or die("Access Denied");
                         <input type="text" name="taille_texte" value="28" class='form-control input-lg'><span class="unit">%</span>
                     </div>
                 </div>
-            </form>
+    <input type="hidden" value="<?php $this->fValue('id');?>" class="form-control" id="<?php $this->fName('id')?>" name="<?php $this->fName('id')?>">
+</form>

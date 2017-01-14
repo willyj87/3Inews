@@ -13,13 +13,28 @@ $this->setPageTitle('3INews');
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img class="news-image" src="images/mars.jpg" alt="slide1">
-            <div class="carousel-caption">
-                <h3>Achraf RAISSE</h3>
-                <p>Veut aller sur MArs</p>
+        <?php
+        foreach ($this->news as $data){
+            if ($data['ordre'] == 1){
+                $active = 'active';
+            }
+            else
+                $active = '';
+            ?>
+            <div class="item <?php echo $active?>">
+                    <?php
+                    echo '<img  class="news-image" src="data:image/jpeg;base64,'.base64_encode( $data['image'] ).'" alt="news'.$data['ordre'].'"/>';
+                    ?>
+                <div class="carousel-caption">
+                    <h3>
+                        <?php
+                        echo $data['texte']?>
+                    </h3>
+                </div>
             </div>
-        </div>
+            <?php
+        }
+        ?>
         <div class="item">
             <img class="news-image" src="images/chateau.jpg" alt="slide2">
             <div class="carousel-caption">

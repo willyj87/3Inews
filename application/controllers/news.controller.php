@@ -26,7 +26,7 @@ Class NewsController extends Controller{
         $page->setTemplate("news");
         $page->setView("liste-utilisateurs");
         $model = new UtilisateurModel();
-        $page->utilisateurs = $model->lister();
+        $page->users = $model->lister();
         $message = Messenger::getMessage();
         if($message!=false)
             Messages::addMessage($message,0);
@@ -49,6 +49,9 @@ Class NewsController extends Controller{
         $page = Page::getInstance();
         $page->setTemplate('news');
         $page->setView('diffusion');
+        $listnews = new NewsModel();
+        $page->news = $listnews->liste();
+        $page->usernews = $listnews;
     }
 
     /**
@@ -59,13 +62,32 @@ Class NewsController extends Controller{
         $page = Page::getInstance();
         $page->setTemplate('redacteur');
         $page->setView('accueil');
+        $listnews = new NewsModel();
+        $page->news = $listnews->liste();
     }
+  
     public function addnewsAction(){
         $page = Page::getInstance();
-        $page->setTemplate();
-        $page->setView();
-        $add = new addForm();
-        $page->add = $add;
+        $creerModel = new UtilisateurModel();
+        $page->setTemplate('redacteur');
+        $page->setView('edition');
+        $add = new AddForm('?controller=news&action=addnews');
+        $page->editionForm = $add;
+        $add->id = 0;
+        $page->editionForm = $add;
+        if ($add->isSubmitted()==false){
+            return;
+        }
+        $page->editionForm->loadData(INPUT_POST);
+        $valid = $add->isValid();
+        if ($valid == false) {
+            return;
+        }
+        $data = $add->getData();
+        if (key($data) != 'id' || key($data) != 'creation')
+            $creerModel->creer($data);
+        Messenger::setMessage("L'utilisateur ".$data['nom']." ".$data['prenom']." a bien été enregistré");
+        HttpHelper::redirect('?controller=utilisateur&action=lister');
 
     }
     public function adduserAction(){

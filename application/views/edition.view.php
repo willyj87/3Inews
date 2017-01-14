@@ -45,6 +45,7 @@ $this->setPageTitle('Edition de News');
             </div>
         </div>
         <div class="col-md-6" id="sup-2">
+            <?php $this->editionForm->render();?>
           
         </div>
     </div>

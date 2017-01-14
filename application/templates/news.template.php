@@ -42,6 +42,7 @@ defined('3INEWS') or die('Acces Denied');
             </nav>
         </header>
         <main>
+            [%MESSAGES%]
             [%VIEW%]
         </main>
         <footer>

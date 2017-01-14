@@ -9,7 +9,6 @@ namespace inews;
 defined('3INEWS') or die('Acces Denied');
 $this->addStyleSheets('css/liste.css');
 $this->setPageTitle('Les utilisateurs');
-
 ?>
 <div class="container-fluid">
     <h1 class="page-header">Utilisateurs</h1>
@@ -18,7 +17,7 @@ $this->setPageTitle('Les utilisateurs');
             <div class="col-md-9" >
             </div>
             <div class="col-md-3" >
-                <button class="btn btn-lg right">Ajouter</button>
+                <a class="btn btn-lg right" href="?controller=utilisateur&action=creer">Ajouter</a>
             </div>
         </div>
         <div class="container-fluid">
@@ -26,48 +25,53 @@ $this->setPageTitle('Les utilisateurs');
                 <div class="col-md-12">
                     <table class="table table-responsive table-striped">
                         <tr>
-                            <th> id</th>
-                            <th>Nom - Prénom</th>
-                            <th>Admin</th>
-                            <th>Login</th>
-                            <th>Commande</th>
+                            <?php
+                            $affiche=array();
+                            foreach ($this->users as $user => $content){
+                                foreach ($content as $key =>$value){
+                                    if (!in_array($key,$affiche) and $key !='motdepasse' and
+                                     $key !='login' and $key !='statut' and $key !='creation' and $key!='connexion')
+                                $affiche[] = $key;
+                                }
+                            }
+                            foreach ($affiche as $value){
+                            ?>
+                            <th>
+                                <?php echo ucfirst($value);?>
+                            </th>
+                        <?php
+                          }
+                            ?>
+                            <th>
+                                Commande
+                            </th>
                         </tr>
-                        <tr >
-                            <td>4</td>
-                            <td>Gaudin Hervé</td>
-                            <td></td>
-                            <td>gaudinh</td>
-                            <td>
-                                <a href="#"><span class="glyphicon glyphicon-pencil liste-edit" id="icone-test" ></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-trash liste-edit" id="icone-test"></span></a>
-                            </td>
-                        </tr>
-                        <tr id="bordure-ligne">
-                            <td>2</td>
-                            <td>Oulad Moussa</td>
-                            <td><span class="glyphicon  glyphicon-ok-sign"></span> </td>
-                            <td id="bordure-col">mom</td>
-                            <td>
-                                <a href="#">   <span class="glyphicon glyphicon-pencil liste-edit"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-trash liste-edit"></span></a>
-                            </td>
-                        </tr>
+                        <?php
+                        foreach ($this->users as $user){
+                        ?>
                         <tr>
-                            <td>8</td>
-                            <td>Ruchaud William</td>
-                            <td></td>
-                            <td>ruchaudw</td>
                             <td>
-                                <a href="#"><span class="glyphicon glyphicon-pencil liste-edit"></span></a>
-                                <a href="#"><span class="glyphicon glyphicon-trash liste-edit"></span></a>
+                                <?php echo $user['id'];
+                                ?>
+                            </td>
+                            <td> <?php echo $user['nom']."\t".$user['prenom'];
+                                ?>
+                            </td>
+                            <td>
+                                <?php echo $user['login'];
+                                ?>
+                            </td>
+                            <td>
+                                <a href="#"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
+                            <?php
+                        }
+                        ?>
                     </table>
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>

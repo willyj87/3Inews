@@ -29,12 +29,24 @@ class IndexController extends Controller
         $page = Page::getInstance();
         $page->setTemplate('viewer');
         $page->setView('viewer');
+        $listnews = new NewsModel();
+        $page->news = $listnews->liste();
     }
     function viewerconnectAction()
     {
         $page = Page::getInstance();
         $page->setTemplate('viewerconnect');
         $page->setView('viewer');
+        $listnews = new NewsModel();
+        $page->news = $listnews->liste();
+    }
+    function viewerconnectredacAction()
+    {
+        $page = Page::getInstance();
+        $page->setTemplate('viewerconnectredac');
+        $page->setView('viewer');
+        $listnews = new NewsModel();
+        $page->news = $listnews->liste();
     }
 
     function indexAction()
