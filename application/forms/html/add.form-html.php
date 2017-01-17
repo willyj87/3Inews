@@ -2,61 +2,42 @@
 /**
  * Created by PhpStorm.
  * User: root
- * Date: 04/01/17
- * Time: 12:29
+ * Date: 15/01/17
+ * Time: 02:32
  */
 namespace inews;
 defined("3INEWS") or die("Access Denied");
 ?>
+<form action="<?php echo $this->getAction()?>" method="POST" enctype="multipart/form-data" id="add-form">
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" id="<?php $this->fName('texte'); ?>" name="<?php $this->fName('texte'); ?>" placeholder="<?php $this->fLabel('texte')?>" value="<?php $this->fValue('texte');?>">
+            <?php //$this->fMessages('login');?>
+        </div>
+    </div>
 
-<form id="add-form" method="POST" action="<?php echo $this->getAction();?>" class="form-horizontal">
-                <h3 id="#param">Paramètre</h3>
-                <br>
-                <br>
-                <div class="form-inline">
-                    <div class="col-md-4">
-                        <label>Couleur texte:</label>
-                    </div>
-                    <div>
-                        <input type="text" name="texte" value="#FFFFFF" class='form-control input-lg'>
-                    </div>
-                </div>
-                <br><br><br>
-                <div class="form-inline">
-                    <div class="col-md-4">
-                    <label>Couleur bandeau :</label>
-                    </div>
-                    <div>
-                        <input type="text" name="couleur_bandeau" value="#000000" class='form-control input-lg' >
-                    </div>
-                </div>
-                <br><br><br>
-                <div class="form-inline">
-                    <div class="col-sm-4">
-                        <label>Position bandeau :</label>
-                    </div>
-                    <select  class="form-control input-lg">
-                        <option value=gauche >gauche</option>
-                        <option value=droite>droite</option>
-                        <option value=centre>centre</option>
-                    </select>
-                </div>
-                <br><br><br>
-                <div class="form-inline">
-                    <div class="col-sm-4">
-                        <label>Taille bandeau :</label>
-                    </div>
-                        <input type="text" name="taille_bandeau" value="20" class='form-control input-lg'><span class="unit">Px</span>
-                </div>
-
-                <br><br><br>
-                <div class="form-inline">
-                    <div class="col-sm-4">
-                        <label>Taille texte :</label>
-                    </div>
-                    <div>
-                        <input type="text" name="taille_texte" value="28" class='form-control input-lg'><span class="unit">%</span>
-                    </div>
-                </div>
-    <input type="hidden" value="<?php $this->fValue('id');?>" class="form-control" id="<?php $this->fName('id')?>" name="<?php $this->fName('id')?>">
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" id="<?php $this->fName('ordre'); ?>" name="<?php $this->fName('ordre'); ?>" placeholder="<?php $this->fLabel('ordre')?>" value="<?php $this->fValue('ordre');?>">
+            <?php //$this->fMessages('login');?>
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" id="<?php $this->fName('duree'); ?>" name="<?php $this->fName('duree'); ?>" placeholder="<?php $this->fLabel('duree')?>" value="<?php $this->fValue('duree');?>">
+            <?php //$this->fMessages('login');?>
+        </div>
+    </div>
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+    <span class="btn btn-primary btn-file" ><span class="fileupload-new">Select file</span>
+    <span class="fileupload-exists">Change</span>
+        <input type="file" id="images" name="images">
+    </span>
+        <span class="fileupload-preview"></span>
+        <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+    </div>
+    <input type="hidden" class="form-control" id="<?php $this->fName('id'); ?>" name="<?php $this->fName('id'); ?>" placeholder="<?php $this->fLabel('id')?>" value="<?php $this->fValue('id');?>">
+    <button type="submit" class="btn btn-default">Creer</button>
 </form>
+<?php $images = addslashes(file_get_contents($_FILES['images']['tmp_name']));?>
+

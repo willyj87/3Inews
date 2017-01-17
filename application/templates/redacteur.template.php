@@ -15,6 +15,7 @@ defined('3INEWS') or die('Acces Denied');
         <title>[%TITLE%]</title>
         <link rel="stylesheet" href= "vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" href= "css/3in.css"/>
+        <link rel="stylesheet" href= "css/addnews.css"/>
         <link rel="stylesheet" href= "css/font-awesome.min.css"/>
         [%STYLESHEETS%]
     </head>
@@ -46,4 +47,5 @@ defined('3INEWS') or die('Acces Denied');
         </footer>
         <script src="vendors/jquery-3.1.1.js" type="text/javascript"></script>
         <script src='vendors/bootstrap/dist/js/bootstrap.min.js' type="text/javascript"></script>
+        <script src="js/addnews.js"></script>
     </body>

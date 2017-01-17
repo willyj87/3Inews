@@ -22,6 +22,7 @@ class IndexController extends Controller
     
     function __construct()
     {
+       // $this->redirectUnauthenticated('?controller=index&action=viewer');
         $this->setDefaultActionName('viewer');
     }
     function viewerAction()

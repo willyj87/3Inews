@@ -55,7 +55,7 @@ $this->setPageTitle('Edition de News');
             <h3>Les images</h3>
         </div>
         <div class="col-md-2" style="border-right:11px;">
-            <button class="btn btn-default btn-lg">Ajouter</button>
+            <a href="#" class="btn btn-default btn-lg">Ajouter</a>
         </div>
     </div>
     <br>

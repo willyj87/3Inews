@@ -49,8 +49,8 @@ $this->setPageTitle('Mes news');
                         ?>
                     </td>
                     <td>
-                        <a href="#"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                        <a href="?controller=news&action=editnews"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></a>
+                        <a href="?controller=news&action=editnews"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 <?php
