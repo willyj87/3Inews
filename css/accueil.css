@@ -38,12 +38,21 @@
     font-size:1em;
 }
 table i {
-    position: relative;
+    position: relative !important;
     top: 1px;
     color: white !important;
-    background-color:  #337CBB;
+    background-color:  #337CBB !important;
+    margin-right: 7px !important;
+}
+table button{
     padding: 5px;
-    margin-right: 7px;
+    background-color:  #337CBB !important;
+}
+table button:hover{
+    border-radius: inherit;
+    box-shadow: none;
+    text-decoration: none;
+    color: white;
 }
 
 .btn-clean i.ion-ios-arrow-down {

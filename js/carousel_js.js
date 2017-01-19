@@ -5,19 +5,6 @@ $('.carousel').carousel({
     interval:5000,
     pause: null
 });
-
-<!--function loadimage() {
-   $.getJSON("data_js",function (data){
-       var item= [];
-       $.each(data, function (key,val){
-            item.push()
-       }
-
-       )
-
-   })
-}-->
-loadimage();
 var elem = document.getElementsByClassName("news-image");
 if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -36,3 +23,4 @@ $(window).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', fu
         location.reload(true);
     }
 });
+$(elem).css()

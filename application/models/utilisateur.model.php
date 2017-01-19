@@ -40,7 +40,6 @@ class UtilisateurModel implements AuthenticationInterface
         } catch (\PDOException $ex) {
             die('Erreur SQL '.$ex->getMessage());
         }
-        echo "suppression effectué".'<br>';
     }
 
     /**

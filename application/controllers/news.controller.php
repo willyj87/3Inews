@@ -32,16 +32,6 @@ Class NewsController extends Controller{
             Messages::addMessage($message,0);
 
     }
-
-    /**
-     * Fonction de modification des news
-     */
-    public function editerAction(){
-        $page = Page::getInstance();
-        $page->setTemplate('redacteur');
-        $page->setView('edition');
-    }
-
     /**
      * Méthode permettant de visualiser les diffusion
      */
@@ -66,16 +56,26 @@ Class NewsController extends Controller{
         $listnews = new NewsModel();
         $page->news = $listnews;
     }
-    public function diffusionnews()
-    {
-        $page = Page::getInstance();
-        $page->setTemplate('news');
-        $page->setView('diffusion');
-        $listnews = new NewsModel();
-        $page->news = $listnews->liste();
-        $page->usernews = $listnews;
 
+    /**
+     * @throws Error
+     * Supression des news
+     */
+    public function deleteAction(){
+        if(!filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) or filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) == null)
+            throw new Error("Erreur de formulaire");
+        $modelsupprimer = new NewsModel();
+        $id = $_POST['id'];
+        $modelsupprimer->delete($id);
+        Messenger::setMessage('Suppression éffectué');
+        HttpHelper::redirect('?controller=news&action=redac');
     }
+
+    /**
+     * @throws Error
+     * @throws \F3il\SqlError
+     * Edition des news
+     */
     public function editnewsAction(){
         $page = Page::getInstance();
         $model = new NewsModel();
@@ -101,6 +101,12 @@ Class NewsController extends Controller{
         HttpHelper::redirect('?controller=news&action=redac');
 
     }
+
+    /**
+     * @throws Error
+     * @throws \F3il\SqlError
+     * Ajout de news
+     */
     public function addnewsAction(){
         $page = Page::getInstance();
         $createModel = new NewsModel();

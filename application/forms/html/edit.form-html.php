@@ -63,11 +63,11 @@ defined("3INEWS") or die("Access Denied");
                 <div class="form-inline">
                         <label>Position bandeau :</label>
                     <select  class="form-control input-lg">
-                        <option value=gauche >gauche</option>
-                        <option value=droite>droite</option>
-                        <option value=centre></option>
-                        <option value=centre>Haute</option>
-
+                        <option value='haut-hor' >Horizontal haut</option>
+                        <option value='centre-hor'>Horizontal centre</option>
+                        <option value='bas-hor'>Horizontal bas</option>
+                        <option value='gauche-vert'>Vertical gauche</option>
+                        <option value='droite-vert'>Vertical droite</option>
                     </select>
                 </div>
                 <div class="form-inline">

@@ -134,4 +134,45 @@ class NewsModel
         }
     }
 
+    function delenewsuser($id){
+        $db = Database::getInstance();
+        $sql2 = "DELETE FROM news WHERE id = :id";
+        try{
+            $req2 = $db->prepare($sql2);
+            $req2->bindValue(':id',$id);
+            $req2->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+    }
+    function delediffuser($id){
+        $db = Database::getInstance();
+
+        $sql = "DELETE FROM news_diff WHERE news_diff.id_n = :id";
+
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':id',$id);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+    }
+    public function delete($id){
+        $db = Database::getInstance();
+
+        $sql = "DELETE FROM user_news WHERE id_n = :id";
+
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':id',$id);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+        $this->delediffuser($id);
+        $this->delenewsuser($id);
+    }
+
+
 }

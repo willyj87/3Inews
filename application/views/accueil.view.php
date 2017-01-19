@@ -52,7 +52,8 @@ $user = $auth->getLoggedUser();?>
                             ?>
                         </td>
                         <td>
-                            <button name="id" value="<?php echo $data['id']?>" form="edit-form" class="btn btn-default btn-xs" title="editer"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                            <button name="id" value="<?php echo $data['id']?>" form="edit-form" class="btn btn-default btn-xs" title="editer"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
+                            <button name="id" value="<?php echo $data['id']?>" form="delete-form" class="btn btn-default btn-xs" title="supprimer"><i class="fa fa-trash fa-2x" ></i></button>
                         </td>
                     </tr>
                     <?php
@@ -63,6 +64,9 @@ $user = $auth->getLoggedUser();?>
     </div>
 
 <form id="edit-form" action="/web/3Inews/index.php?controller=news&action=editnews" method="POST">
+    
 </form>
-
-
+<form id="delete-form" action="/web/3Inews/index.php?controller=news&action=delete" method="POST">
+    
+</form>
+<pre><?php print_r($_POST)?></pre>
