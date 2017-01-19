@@ -8,7 +8,10 @@
 namespace inews;
 use F3il\Authentication;
 defined('3INEWS') or die('Acces Denied');
+
 $this->addStyleSheets('css/edition.css');
+
+
 $this->setPageTitle('Edition de News');
 $this->editionForm->render();
 $auth = Authentication::getInstance();

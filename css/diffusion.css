@@ -177,7 +177,7 @@ div.margin {
 #diff{
     background-color: #337CBB;
     color: white;
-    font-size: 1.2em;
-    padding: 2px;
+    font-weight: bold;
+    padding: 5px;
 
 }

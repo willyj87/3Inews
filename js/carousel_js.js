@@ -6,7 +6,7 @@ $('.carousel').carousel({
     pause: null
 });
 
-function loadimage() {
+<!--function loadimage() {
    $.getJSON("data_js",function (data){
        var item= [];
        $.each(data, function (key,val){
@@ -16,7 +16,7 @@ function loadimage() {
        )
 
    })
-}
+}-->
 loadimage();
 var elem = document.getElementsByClassName("news-image");
 if (elem.requestFullscreen) {

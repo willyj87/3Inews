@@ -27,7 +27,7 @@
 #sup-2 form {
     margin-left: 20px;
 }
-#sup-2 form >div{
+#sup-2 form > div{
     margin-top: 40px;
 }
 #sup-1{
@@ -37,7 +37,14 @@
 #sup-2 form label{
     margin-right: 90px;
 }
-
-#edit-form div{
-    margin-top: 20px;
+#sup-2 form #cp2,#cp3{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+#texte{
+    margin-top: 40px;
+}
+#bandeau{
+    margin-top: 10px;
+    margin-bottom: 0px;
 }

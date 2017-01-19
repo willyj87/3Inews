@@ -50,23 +50,24 @@ defined("3INEWS") or die("Access Denied");
         <div class="col-md-6" id="sup-2">
             <form id="edition" method="POST" action="" class="form-horizontal">
                     <h3 id="#param">Paramètre</h3>
-                <div class="form-inline">
-                        <label>Couleur texte:</label>
-                        <input type="text" name="texte" value="#FFFFFF" class='form-control input-lg'>
-
+                <label>Couleur texte:</label>
+                <div id="cp2" class="input-group colorpicker-component">
+                    <input type="text" value="#00AABB" class="form-control input-lg" />
+                    <span class="input-group-addon"><i></i></span>
+                </div>
+                <label id="bandeau">Couleur bandeau:</label>
+                <div id="cp3" class="input-group colorpicker-component">
+                    <input type="text" value="#00AABB" class="form-control input-lg" />
+                    <span class="input-group-addon"><i></i></span>
                 </div>
                 <div class="form-inline">
-                        <label>Couleur bandeau :</label>
-                        <input type="text" name="couleur_bandeau" value="#000000" class='form-control input-lg' >
-
-                </div>
-                <div class="form-inline">
-
                         <label>Position bandeau :</label>
                     <select  class="form-control input-lg">
                         <option value=gauche >gauche</option>
                         <option value=droite>droite</option>
-                        <option value=centre>centre</option>
+                        <option value=centre></option>
+                        <option value=centre>Haute</option>
+
                     </select>
                 </div>
                 <div class="form-inline">

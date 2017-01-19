@@ -1,16 +1,7 @@
 <?php
 
-namespace inews;
 
-defined('3INEWS') or die('Acces interdit');
-
-use F3il\Authentication;
-use F3il\NavigationHelper;
-
-$auth = Authentication::getInstance();
-
-$user = $auth->getLoggedUser();
-$id = $user['id'];
+$id = $user['9'];
 ?>
 <main>
 

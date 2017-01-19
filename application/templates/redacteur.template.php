@@ -19,6 +19,7 @@ $user = $auth->getLoggedUser();?>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>[%TITLE%]</title>
         <link rel="stylesheet" href= "vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href= "vendors/bootstrap-colorpicker-master/dist/css/bootstrap-colorpicker.min.css"/>
         <link rel="stylesheet" href= "css/3in.css"/>
         <link rel="stylesheet" href= "css/font-awesome.min.css"/>
         [%STYLESHEETS%]
@@ -52,5 +53,11 @@ $user = $auth->getLoggedUser();?>
         </footer>
         <script src="vendors/jquery-3.1.1.js" type="text/javascript"></script>
         <script src='vendors/bootstrap/dist/js/bootstrap.min.js' type="text/javascript"></script>
-        <script src="js/addnews.js"></script>
+        <script src="vendors/bootstrap-colorpicker-master/dist/js/bootstrap-colorpicker.min.js" type="text/javascript"></script>
+        <script src="vendors/bootstrap-colorpicker-master/src/js/colorpicker-color.js" type="text/javascript"></script>
+        <script src="vendors/bootstrap-colorpicker-master/src/js/colorpicker-component.js" type="text/javascript"></script>
+        <script src="vendors/bootstrap-colorpicker-master/src/js/colorpicker-defaults.js" type="text/javascript"></script>
+        <script src="vendors/bootstrap-colorpicker-master/src/js/colorpicker-plugin-wrapper.js" type="text/javascript"></script>
+        <script src="js/addnews.js" type="text/javascript"></script>
+        <script src="js/editnews.js" type="text/javascript"></script>
     </body>
