@@ -6,8 +6,13 @@
  * Time: 16:45
  */
 namespace inews;
+use F3il\Authentication;
+use F3il\NavigationHelper;
+
 defined('3INEWS') or die('Acces Denied');
 ?>
+<?php $auth = Authentication::getInstance();
+$user = $auth->getLoggedUser();?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -15,7 +20,6 @@ defined('3INEWS') or die('Acces Denied');
         <title>[%TITLE%]</title>
         <link rel="stylesheet" href= "vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" href= "css/3in.css"/>
-        <link rel="stylesheet" href= "css/addnews.css"/>
         <link rel="stylesheet" href= "css/font-awesome.min.css"/>
         [%STYLESHEETS%]
     </head>
@@ -29,7 +33,7 @@ defined('3INEWS') or die('Acces Denied');
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Willy<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $user['nom'].' '.$user['prenom']?><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="?controller=utilisateur&action=deconnecter" >Se déconnecter</a>
@@ -44,6 +48,7 @@ defined('3INEWS') or die('Acces Denied');
             [%VIEW%]
         </main>
         <footer>
+            <div></div>
         </footer>
         <script src="vendors/jquery-3.1.1.js" type="text/javascript"></script>
         <script src='vendors/bootstrap/dist/js/bootstrap.min.js' type="text/javascript"></script>

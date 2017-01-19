@@ -174,3 +174,10 @@ div.margin {
     background-color: #337CBB;
     color: white !important;
 }
+#diff{
+    background-color: #337CBB;
+    color: white;
+    font-size: 1.2em;
+    padding: 2px;
+
+}

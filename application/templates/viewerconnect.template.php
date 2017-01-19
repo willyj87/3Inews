@@ -7,7 +7,10 @@
  */
 namespace  inews;
 defined('3INEWS') or die('Acces Denied');
+use F3il\Authentication;
 ?>
+<?php $auth = Authentication::getInstance();
+$user = $auth->getLoggedUser();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +34,7 @@ defined('3INEWS') or die('Acces Denied');
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Willy<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $user['nom'].' '.$user['prenom']?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="?controller=utilisateur&action=deconnecter">Se déconnecter</a>

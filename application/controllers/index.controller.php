@@ -20,12 +20,12 @@ defined('3INEWS') or die('Acces Denied');
 class IndexController extends Controller
 {
     
-    function __construct()
+   public function __construct()
     {
-       // $this->redirectUnauthenticated('?controller=index&action=viewer');
+      //  $this->redirectUnauthenticated('?controller=index');
         $this->setDefaultActionName('viewer');
     }
-    function viewerAction()
+    public function viewerAction()
     {
         $page = Page::getInstance();
         $page->setTemplate('viewer');
@@ -33,7 +33,7 @@ class IndexController extends Controller
         $listnews = new NewsModel();
         $page->news = $listnews->liste();
     }
-    function viewerconnectAction()
+    public function viewerconnectAction()
     {
         $page = Page::getInstance();
         $page->setTemplate('viewerconnect');
@@ -41,7 +41,7 @@ class IndexController extends Controller
         $listnews = new NewsModel();
         $page->news = $listnews->liste();
     }
-    function viewerconnectredacAction()
+    public function viewerconnectredacAction()
     {
         $page = Page::getInstance();
         $page->setTemplate('viewerconnectredac');
@@ -50,7 +50,7 @@ class IndexController extends Controller
         $page->news = $listnews->liste();
     }
 
-    function indexAction()
+    public function indexAction()
     {
         $msg = 'Erreur Login/Mot de Passe';
         $page = Page::getInstance();
@@ -78,7 +78,7 @@ class IndexController extends Controller
         }
         if ($statut['statut'] == 'administrateur')
 
-            $this->redirectAuthenticated('?controller=news&action=lister');
+            $this->redirectAuthenticated('?controller=news&action=diffusion');
         else
             $this->redirectAuthenticated('?controller=news&action=redac');
 

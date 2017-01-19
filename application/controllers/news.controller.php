@@ -49,9 +49,10 @@ Class NewsController extends Controller{
         $page = Page::getInstance();
         $page->setTemplate('news');
         $page->setView('diffusion');
-        $model = new NewsModel();
-        $page->news = $model->liste();
-        $page->usernews = $model;
+        $listnews = new NewsModel();
+        $page->news = $listnews->liste();
+        $page->diff = $listnews;
+        $page->usernews = $listnews;
     }
 
     /**
@@ -63,7 +64,7 @@ Class NewsController extends Controller{
         $page->setTemplate('redacteur');
         $page->setView('accueil');
         $listnews = new NewsModel();
-        $page->news = $listnews->liste();
+        $page->news = $listnews;
     }
     public function diffusionnews()
     {
@@ -77,36 +78,37 @@ Class NewsController extends Controller{
     }
     public function editnewsAction(){
         $page = Page::getInstance();
-        $creerModel = new UtilisateurModel();
+        $model = new NewsModel();
+        $page->sesnews = $model;
         $page->setTemplate('redacteur');
         $page->setView('edition');
         $edit = new EditForm('?controller=news&action=editnews');
-        $edit->id = 0;
+        $id = $_POST['id'];
         $page->editionForm = $edit;
+        $editmo = $model->listenews($id);
         if ($edit->isSubmitted()==false){
+            $page->editionForm->loadData($editmo);
             return;
         }
         $page->editionForm->loadData(INPUT_POST);
-        $valid = $edit->isValid();
+        $valid = $page->editionForm->isValid();
         if ($valid == false) {
             return;
         }
         $data = $edit->getData();
-        if (key($data) != 'id' || key($data) != 'creation')
-            $creerModel->creer($data);
-        Messenger::setMessage("News ".$data['nom']." ".$data['prenom']." a bien été modifié");
-        HttpHelper::redirect('?controller=utilisateur&action=lister');
+        $model->update($data);
+        Messenger::setMessage("La news a bien été modifié");
+        HttpHelper::redirect('?controller=news&action=redac');
 
     }
     public function addnewsAction(){
         $page = Page::getInstance();
-        $creerModel = new NewsModel();
+        $createModel = new NewsModel();
         $page->setTemplate('redacteur');
         $page->setView('addnews');
         $add = new AddForm('?controller=news&action=addnews');
         $add->id = 0;
         $page->addForm = $add;
-        $page->image = '';
         if ($add->isSubmitted()==false){
             return;
         }
@@ -116,10 +118,11 @@ Class NewsController extends Controller{
             return;
         }
         $data = $add->getData();
-        $data['image'] = $page->image;
-        print_r($data);
-        $creerModel->add($data);
-        //HttpHelper::redirect('?controller=news&action=redac');
+        if (key($data) != 'id' || key($data) != 'creation')
+            $createModel->add($data);
+        Messenger::setMessage("La news ".$data['texte']." a bien été enregistré");
+        HttpHelper::redirect('?controller=news&action=redac');
 
     }
+
 }

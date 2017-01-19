@@ -2,7 +2,7 @@
     background-color: #337CBB; color: white;
 }
 #param{
-     font-size: 3em; color: #2e6da4;
+     color: #337CBB !important;
  }
 .taille{
     width:130px; height: 45px;
@@ -15,12 +15,29 @@
     margin-left: 5px;
 }
 #down {
-    border-top: solid #2e6da4 2px;
+    border-top: solid #2e6da4 3px;
     margin-bottom: 10px;
 }
-#down button {
-    background-color: #337CBB; color: white;
+#ajout {
+    background-color: #337CBB; color: white; margin-top: 10px;
 }
 #down > div > h3{
     font-size: 3em; margin-top: 10px; margin-right:0px;
+}
+#sup-2 form {
+    margin-left: 20px;
+}
+#sup-2 form >div{
+    margin-top: 40px;
+}
+#sup-1{
+    border-right: solid 5px #337CBB;
+    padding-right: 30px;
+}
+#sup-2 form label{
+    margin-right: 90px;
+}
+
+#edit-form div{
+    margin-top: 20px;
 }

@@ -25,7 +25,8 @@ $this->setPageTitle('Diffusion de News');
         <div class="col-md-12">
             <table class="table table-responsive diff-tab-principal">
                 <?php
-                foreach ($this->news as $data){
+                $image = $this->diff->newsdiff();
+                foreach ($image as $data) {
                     ?>
                     <tr>
                         <td>
@@ -90,96 +91,47 @@ $this->setPageTitle('Diffusion de News');
                 </div>
             </div>
         <table class="table table-responsive diff-tab-bord">
-            <tr>
-                <td>
-                    <img src="images/bynigth.jpg" alt="news2" class="img-responsive img-thumbnail diff-img"><p>La nuit</p>
-                </td>
-                <td>
-                    <table class="diff-tab-secondaire">
-                        <tr>
-                            <td><a href="#">Par : Thomas Mbede</a></td>
-                        </tr>
-                        <tr>
-                            <td><p>Le : 02/12/2016</p></td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="images/bynigth.jpg" alt="news2" class="img-responsive img-thumbnail diff-img"><p>La nuit</p>
-                </td>
-                <td>
-                    <table class="diff-tab-secondaire">
-                        <tr>
-                            <td><a href="#">Par : Thomas Mbede</a></td>
-                        </tr>
-                        <tr>
-                            <td><p>Le : 02/12/2016</p></td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="images/bynigth.jpg" alt="news2" class="img-responsive img-thumbnail diff-img"><p>La nuit</p>
-                </td>
-                <td>
-                    <table class="diff-tab-secondaire">
-                        <tr>
-                            <td><a href="#">Par : Thomas Mbede</a></td>
-                        </tr>
-                        <tr>
-                            <td><p>Le : 02/12/2016</p></td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="images/bynigth.jpg" alt="news2" class="img-responsive img-thumbnail diff-img"><p>La nuit</p>
-                </td>
-                <td>
-                    <table class="diff-tab-secondaire">
-                        <tr>
-                            <td><a href="#">Par : Thomas Mbede</a></td>
-                        </tr>
-                        <tr>
-                            <td><p>Le : 02/12/2016</p></td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="images/bynigth.jpg" alt="news2" class="img-responsive img-thumbnail diff-img"><p>La nuit</p>
-                </td>
-                <td>
-                    <table class="diff-tab-secondaire">
-                        <tr>
-                            <td><a href="#">Par : Thomas Mbede</a></td>
-                        </tr>
-                        <tr>
-                            <td><p>Le : 02/12/2016</p></td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
-                </td>
-            </tr>
+            <?php
+            foreach ($this->news as $data){
+            ?>
+                <tr>
+                    <td>
+                        <?php
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode( $data['image'] ).'" alt="news1" class="img-responsive img-thumbnail diff-img"/>';
+                        ?>
+
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <?php  $nomuser = $this->usernews->newsuser($data['id']);
+                                    foreach ($nomuser as $nom){
+                                        echo 'Par : '.$nom['nom'].' '.$nom['prenom'];
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Le : <?php echo $data['date']?></p>
+                                </td>
+                            </tr>
+                            <?php foreach ($image as $img){
+                                if ($img['id'] ==$data['id']){
+                                    echo "<span id='diff'>Diff</span>";
+                                }
+                            }?>
+                        </table>
+                    </td>
+                    <td>
+                        <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
+                    </td>
+
+                </tr>
+                <?php
+            }
+            ?>
         </table>
     </div>
 </div>

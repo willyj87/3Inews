@@ -16,10 +16,8 @@ class EditForm extends Form{
     {
         parent::__construct($action,'edit-form');
         /** @var TYPE_NAME $email */
-        Form::addFormField($image = new Field('images', 'Images', null, true));
+        Form::addFormField($image = new Field('image', 'Image', null, false));
         Form::addFormField($texte = new Field('texte', 'Texte', null, true));
-        Form::addFormField($ordre= new Field('ordre', 'Ordre', null, true));
-        Form::addFormField($duree = new Field('duree', 'Duree', null, true));
         Form::addFormField($id = new Field('id', 'Id', null, true));
 
     }
