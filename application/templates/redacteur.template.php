@@ -46,6 +46,7 @@ $user = $auth->getLoggedUser();?>
             </nav>
         </header>
         <main>
+            [%MESSAGES%]
             [%VIEW%]
         </main>
         <footer>

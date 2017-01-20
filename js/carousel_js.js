@@ -15,12 +15,18 @@ $('#glyph').on('click',function (){
     var span = $('.carousel span');
     span.replaceWith('');
 });
+$('#first').addClass('active');
 
 $(window).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function exitfs(e) {
     var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
     var event = state ? 'FullscreenOn' : 'FullscreenOff';
     if (event == 'FullscreenOff'){
         location.reload(true);
+    } 
+});
+$('.diff-border').draggable();
+$('#drop').droppable({
+    drop:function (){
+        alert('depot ok!');
     }
 });
-$(elem).css()

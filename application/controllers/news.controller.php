@@ -55,6 +55,8 @@ Class NewsController extends Controller{
         $page->setView('accueil');
         $listnews = new NewsModel();
         $page->news = $listnews;
+        $page->diff =$listnews;
+        $page->diffuser = $listnews;
     }
 
     /**
@@ -129,6 +131,33 @@ Class NewsController extends Controller{
         Messenger::setMessage("La news ".$data['texte']." a bien été enregistré");
         HttpHelper::redirect('?controller=news&action=redac');
 
+    }
+    public function delnewsAction(){
+        if(!filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) or filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) == null)
+            throw new Error("Erreur de formulaire");
+        $modelsupprimer = new NewsModel();
+        $id = $_POST['id'];
+        $modelsupprimer->deletediff($id);
+        Messenger::setMessage('Suppression complète');
+       HttpHelper::redirect('?controller=news&action=diffusion');
+    }
+    public function addAction(){
+        if(!filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) or filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) == null)
+            throw new Error("Erreur de formulaire");
+        $modelinsert = new NewsModel();
+        $id = $_POST['id'];
+        $modelinsert->addDiff($id);
+        Messenger::setMessage('Ajout complet');
+        HttpHelper::redirect('?controller=news&action=diffusion');
+    }
+    public function removeAction(){
+        if(!filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) or filter_input(INPUT_POST,'id',FILTER_VALIDATE_INT) == null)
+            throw new Error("Erreur de formulaire");
+        $modelsupprimer = new NewsModel();
+        $id = $_POST['id'];
+        $modelsupprimer->rmNews($id);
+        Messenger::setMessage('Retrait complet');
+        HttpHelper::redirect('?controller=news&action=diffusion');
     }
 
 }

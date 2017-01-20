@@ -20,6 +20,12 @@ table i{
     margin-top: 20px;
     padding: 5px;
 }
+table button{
+    padding: inherit;
+    background-color: transparent;
+    margin: inherit;
+    border: inherit;
+}
 .diff-tab-principal td{
   padding: auto;
 }

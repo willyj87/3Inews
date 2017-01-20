@@ -6,7 +6,9 @@
  * Time: 16:59
  */
 defined('3INEWS') or die('Acces Denied');
+use F3il\Messages;
 use F3il\Authentication;
+Messages::setMessageRenderer('\inews\MessagesHelper::messagesRenderer');
 $this->addStyleSheets('css/accueil.css');
 $this->setPageTitle('Mes news');
 ?>
@@ -17,7 +19,8 @@ $user = $auth->getLoggedUser();?>
 <div class="row">
     <div class="col-md-10 container-fluid" id="diff-div">
         <div class="margin">
-            <label>En cours de diffusion : 1</label>
+            <?php $n = $this->diffuser->newsencour($user['id']) ?>
+            <label>En cours de diffusion : <?php echo $n['count(news_diff.id_n)']?></label>
             <ul class="button-group clean diff-drop">
                 <a class="btn-clean button-dropdown btn" href="#" data-toggle="dropdown">
                     Trier par <i class="fa fa-chevron-down"></i>
@@ -52,8 +55,24 @@ $user = $auth->getLoggedUser();?>
                             ?>
                         </td>
                         <td>
-                            <button name="id" value="<?php echo $data['id']?>" form="edit-form" class="btn btn-default btn-xs" title="editer"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
-                            <button name="id" value="<?php echo $data['id']?>" form="delete-form" class="btn btn-default btn-xs" title="supprimer"><i class="fa fa-trash fa-2x" ></i></button>
+                            <?php
+                            $image= $this->diff->newsdiff();
+                            foreach ($image as $img){
+                                if ($img['id'] == $data['id']){
+                                    $block ['id'] = $data['id'];
+                                }
+
+                                ?>
+                            <?php
+                            }
+                            if ($block['id'] == $data['id'])
+                                $disable = 'disabled = "disabled"';
+                            else
+                                $disable ='';
+                            ?>
+
+                            <button <?php echo $disable ?> name="id" value="<?php echo $data['id']?>" form="edit-form" class="btn btn-default btn-xs" title="editer"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
+                            <button <?php echo $disable ?> name="id" value="<?php echo $data['id']?>" form="delete-form" class="btn btn-default btn-xs" title="supprimer"><i class="fa fa-trash fa-2x" ></i></button>
                         </td>
                     </tr>
                     <?php
@@ -69,4 +88,3 @@ $user = $auth->getLoggedUser();?>
 <form id="delete-form" action="/web/3Inews/index.php?controller=news&action=delete" method="POST">
     
 </form>
-<pre><?php print_r($_POST)?></pre>

@@ -15,13 +15,8 @@ $this->setPageTitle('3INews');
     <div class="carousel-inner" role="listbox">
         <?php
         foreach ($this->news as $data){
-            if ($data['ordre'] == 1){
-                $active = 'active';
-            }
-            else
-                $active = '';
             ?>
-            <div class="item <?php echo $active?>">
+            <div id="first" class="item">
                     <?php
                     echo '<img  class="news-image" src="data:image/jpeg;base64,'.base64_encode( $data['image'] ).'" alt="news'.$data['ordre'].'"/>';
                     ?>

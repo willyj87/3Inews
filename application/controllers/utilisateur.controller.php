@@ -43,24 +43,24 @@ class UtilisateurController extends Controller{
     public function editerAction(){
         $page = Page::getInstance();
         $listeModel = new UtilisateurModel();
-        $page->setTemplate('application');
+        $page->setTemplate('news');
         $page->setView('form');
-        $test = new UtilisateurForm('?controller=utilisateur&action=editer');
+        $user = new UserForm('?controller=utilisateur&action=editer');
         $id = $_POST['id'];
-        $page->testform = $test;
-        $conf = $test->getField('confirmation');
+        $page->liste_user = $user;
+        $conf = $user->getField('confirmation');
         $conf->required = false;
-        $mdp = $test->getField('motdepasse');
+        $mdp = $user->getField('motdepasse');
         $mdp->required = false;
         $model = $listeModel->lire($id);
-        if ($test->isSubmitted() == false){
-            $page->testform->loadData($model);
-            $test->motdepasse = '';
-            $test->confirmation = '';
+        if ($user->isSubmitted() == false){
+            $page->liste_user->loadData($model);
+            $user->motdepasse = '';
+            $user->confirmation = '';
             return;
         }
-        $page->testform->loadData(INPUT_POST);
-        $valid = $page->testform->isValid();
+        $page->liste_user->loadData(INPUT_POST);
+        $valid = $page->liste_user->isValid();
         if ($valid == false) {
             return;
         }
@@ -69,7 +69,7 @@ class UtilisateurController extends Controller{
             $page->message = 'Donnée de formulaire refusé';
             return;
         }
-        $data = $test->getData();
+        $data = $user->getData();
         $listeModel->mettreAJour($data);
         Messenger::setMessage("les données de l'utilisateur ".$data['nom']." ".$data['prenom']." ont bien été modifié");
         HttpHelper::redirect('?controller=utilisateur&action=lister');
@@ -96,7 +96,8 @@ class UtilisateurController extends Controller{
         $userform = new UserForm('?controller=utilisateur&action=creer');
         $userform->id = 0;
         $page->liste_user = $userform;
-        if ($userform->isSubmitted()==false){
+        if ($userform->isSubmitted()==false)
+        {
             return;
         }
         $page->liste_user->loadData(INPUT_POST);
@@ -109,7 +110,6 @@ class UtilisateurController extends Controller{
             $creerModel->creer($data);
         Messenger::setMessage("L'utilisateur ".$data['nom']." ".$data['prenom']." a bien été enregistré");
         HttpHelper::redirect('?controller=utilisateur&action=lister');
-
     }
     public function deconnecterAction(){
         $auth = Authentication::getInstance();

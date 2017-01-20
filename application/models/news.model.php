@@ -173,6 +173,80 @@ class NewsModel
         $this->delediffuser($id);
         $this->delenewsuser($id);
     }
+    function deletediff($id){
+        $db = Database::getInstance();
+
+        $sql = "DELETE FROM news_diff WHERE id_d=:id";
+
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':id',$id);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+    }
+    function addDiff($id){
+        $db = Database::getInstance();
+
+        $sql = "INSERT INTO news_diff SET id_d=:id,id_n=:idn";
+
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':id',6);
+            $req->bindValue(':idn',$id);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+    }
+    function diff(){
+        $db = Database::getInstance();
+
+        $sql = "SELECT * FROM diffusion";
+
+        try{
+            $req = $db->prepare($sql);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+        return $req->fetch(\PDO::FETCH_ASSOC);
+
+    }
+    function rmNews($id){
+        $db = Database::getInstance();
+
+        $sql = "DELETE FROM news_diff WHERE id_n = :id";
+
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':id',$id);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+        return $req->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * @param $id
+     * Fonction permettant de lister les news en cours de diffusion pour un utilisateur donné
+     */
+    function newsencour($id){
+        $db = Database::getInstance();
+        $sql="SELECT count(news_diff.id_n) FROM news_diff INNER JOIN news on news_diff.id_n = news.id INNER JOIN user_news ON news.id = user_news.id_n INNER JOIN utilisateur ON user_news.id_u = utilisateur.id WHERE id_u = :id";
+        try{
+            $req = $db->prepare($sql);
+            $req->bindValue(':id',$id);
+            $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+        return $req->fetch(\PDO::FETCH_ASSOC);
+    }
+       
+
 
 
 }

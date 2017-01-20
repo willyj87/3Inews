@@ -6,6 +6,8 @@
  * Time: 02:34
  */
 defined('3INEWS') or die('Acces Denied');
+use F3il\Messages;
+Messages::setMessageRenderer('\inews\MessagesHelper::messagesRenderer');
 $this->addStyleSheets('css/accueil.css');
 $this->setPageTitle('Nouvelle news');
 $this->addForm->render();

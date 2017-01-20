@@ -7,6 +7,8 @@
  */
 namespace inews;
 defined('3INEWS') or die('Acces Denied');
+use F3il\Messages;
+Messages::setMessageRenderer('\inews\MessagesHelper::messagesRenderer');
 $this->addStyleSheets('css/liste.css');
 $this->setPageTitle('Les utilisateurs');
 ?>
@@ -30,21 +32,29 @@ $this->setPageTitle('Les utilisateurs');
                             foreach ($this->users as $user => $content){
                                 foreach ($content as $key =>$value){
                                     if (!in_array($key,$affiche) and $key !='motdepasse' and
-                                     $key !='login' and $key !='statut' and $key !='creation' and $key!='connexion')
+                                     $key !='statut' and $key !='creation' and $key!='connexion' and $key !='prenom')
                                 $affiche[] = $key;
                                 }
                             }
                             foreach ($affiche as $value){
                             ?>
                             <th>
-                                <?php echo ucfirst($value);?>
+                                <?php
+                                if ($value == 'nom')
+                                    echo 'Nom - Prenom';
+                                else
+                                    echo ucfirst($value);?>
                             </th>
                         <?php
                           }
                             ?>
                             <th>
+                                Admin
+                            </th>
+                            <th>
                                 Commande
                             </th>
+
                         </tr>
                         <?php
                         foreach ($this->users as $user){
@@ -54,7 +64,8 @@ $this->setPageTitle('Les utilisateurs');
                                 <?php echo $user['id'];
                                 ?>
                             </td>
-                            <td> <?php echo $user['nom']."\t".$user['prenom'];
+                            <td>
+                                <?php echo $user['nom']." ".$user['prenom'];
                                 ?>
                             </td>
                             <td>
@@ -62,8 +73,15 @@ $this->setPageTitle('Les utilisateurs');
                                 ?>
                             </td>
                             <td>
-                                <a href="#"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <?php
+                                if ($user['statut'] == 'administrateur')
+                                    echo '<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>';
+                                ?>
+                            </td>
+                            <td>
+                                <button name="id" value="<?php echo $user['id']?>" form="edit-form" class="btn btn-default btn-xs" title="editer"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                <button name="id" value="<?php echo $user['id']?>" form="delete-form" class="btn btn-default btn-xs" title="supprimer"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
                             </td>
                         </tr>
                             <?php
@@ -75,3 +93,10 @@ $this->setPageTitle('Les utilisateurs');
         </div>
     </div>
 </div>
+<form id="edit-form" action="/web/3Inews/index.php?controller=utilisateur&action=editer" method="POST">
+
+</form>
+<form id="delete-form" action="/web/3Inews/index.php?controller=utilisateur&action=supprimer" method="POST">
+
+</form>
+

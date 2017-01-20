@@ -31,7 +31,7 @@ class IndexController extends Controller
         $page->setTemplate('viewer');
         $page->setView('viewer');
         $listnews = new NewsModel();
-        $page->news = $listnews->liste();
+        $page->news = $listnews->newsdiff();
     }
     public function viewerconnectAction()
     {
@@ -39,7 +39,7 @@ class IndexController extends Controller
         $page->setTemplate('viewerconnect');
         $page->setView('viewer');
         $listnews = new NewsModel();
-        $page->news = $listnews->liste();
+        $page->news = $listnews->newsdiff();
     }
     public function viewerconnectredacAction()
     {
@@ -47,7 +47,7 @@ class IndexController extends Controller
         $page->setTemplate('viewerconnectredac');
         $page->setView('viewer');
         $listnews = new NewsModel();
-        $page->news = $listnews->liste();
+        $page->news = $listnews->newsdiff();
     }
 
     public function indexAction()

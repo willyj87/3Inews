@@ -27,7 +27,7 @@ class UtilisateurModel implements AuthenticationInterface
         }
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
-    public function supprimer($id){
+    public function supprimerfinal($id){
         $db = Database::getInstance();
 
         $sql = "DELETE FROM utilisateur WHERE id = :id";
@@ -41,6 +41,23 @@ class UtilisateurModel implements AuthenticationInterface
             die('Erreur SQL '.$ex->getMessage());
         }
     }
+    public function supprimer($id){
+
+        $db = Database::getInstance();
+
+        $sql = "DELETE FROM user_news WHERE id_u = :id";
+
+        try{
+        $req = $db->prepare($sql);
+        $req->bindParam(':id',$id,\PDO::PARAM_INT);
+        print_r($req);
+        $req->execute();
+        } catch (\PDOException $ex) {
+            die('Erreur SQL '.$ex->getMessage());
+        }
+        $this->supprimerfinal($id);
+    }
+
 
     /**
      * @param $data
@@ -50,15 +67,15 @@ class UtilisateurModel implements AuthenticationInterface
         $db = Database::getInstance();
         $auth = Authentication::getInstance();
         $mdp = $auth->hash($data['motdepasse'],$sqlTime);
-        $sql = "INSERT INTO utilisateur SET nom=:nom, prenom=:prenom, login=:login, email=:email, motdepasse=:mdp, creation=:creation ";
+        $sql = "INSERT INTO utilisateur SET nom=:nom, prenom=:prenom, login=:login, statut=:statut, motdepasse=:mdp, creation=:creation ";
         try {
             $req = $db->prepare($sql);
             $req->bindValue(':nom', $data['nom']);
             $req->bindValue(':prenom', $data['prenom']);
             $req->bindValue(':login', $data['login']);
-            $req->bindValue(':email', $data['email']);
             $req->bindValue(':mdp', $mdp);
             $req->bindValue(':creation', $sqlTime);
+            $req->bindValue(':statut',$data['statut']);
             $req->execute();
         } catch (PDOException $ex) {
             die('Erreur SQL '.$ex->getMessage());
@@ -143,14 +160,14 @@ class UtilisateurModel implements AuthenticationInterface
         $time = $lecture['creation'];
         $mdp = $auth->hash($data['motdepasse'],$time);
         if ($data['motdepasse'] == ''){
-            $sql = "UPDATE utilisateur SET nom=:nom,prenom=:prenom,login=:login,email=:email WHERE id=:id";
+            $sql = "UPDATE utilisateur SET nom=:nom,prenom=:prenom,login=:login,statut=:statut WHERE id=:id";
             try{
                 $req = $db->prepare($sql);
                 $req->bindValue(':id',$data['id']);
                 $req->bindValue(':nom',$data['nom']);
                 $req->bindValue(':prenom',$data['prenom']);
                 $req->bindValue(':login',$data['login']);
-                $req->bindValue(':email',$data['email']);
+                $req->bindValue(':statut',$data['statut']);
                 $req->execute();
             }catch (\PDOException $ex) {
                 die('Erreur SQL ' . $ex->getMessage());
@@ -158,14 +175,14 @@ class UtilisateurModel implements AuthenticationInterface
         }
         else {
 
-            $sql = "UPDATE utilisateur SET nom=:nom,prenom=:prenom,login=:login,email=:email,motdepasse=:motdepasse WHERE id=:id";
+            $sql = "UPDATE utilisateur SET nom=:nom,prenom=:prenom,login=:login,statut=:statut,motdepasse=:motdepasse WHERE id=:id";
             try {
                 $req = $db->prepare($sql);
                 $req->bindValue(':id', $data['id']);
                 $req->bindValue(':nom', $data['nom']);
                 $req->bindValue(':prenom', $data['prenom']);
                 $req->bindValue(':login', $data['login']);
-                $req->bindValue(':email', $data['email']);
+                $req->bindValue(':statut', $data['statut']);
                 $req->bindValue(':motdepasse', $mdp);
                 $req->execute();
             } catch (\PDOException $ex) {

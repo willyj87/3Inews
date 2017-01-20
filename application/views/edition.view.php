@@ -6,6 +6,8 @@
  * Time: 16:08
  */
 namespace inews;
+use F3il\Messages;
+Messages::setMessageRenderer('\inews\MessagesHelper::messagesRenderer');
 use F3il\Authentication;
 defined('3INEWS') or die('Acces Denied');
 

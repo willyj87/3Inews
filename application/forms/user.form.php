@@ -30,9 +30,7 @@ class UserForm extends Form{
      */
     function messageRenderer($message){
         ?>
-        <p class="alert alert-danger">
-            <i class="glyphicon glyphicon-remove-sign"></i> <?php echo $message;?>
-        </p>
+        <p class="text-danger text-right"><?php echo $message;?></p>
         <?php
     }
     /**

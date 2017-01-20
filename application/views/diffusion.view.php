@@ -7,6 +7,8 @@
  */
 namespace inews;
 defined('3INEWS') or die('Acces Denied');
+use F3il\Messages;
+Messages::setMessageRenderer('\inews\MessagesHelper::messagesRenderer');
 $this->addStyleSheets('css/diffusion.css');
 $this->setPageTitle('Diffusion de News');
 ?>
@@ -20,13 +22,14 @@ $this->setPageTitle('Diffusion de News');
     <div class="col-md-7" id="diff-div">
         <form class="form-inline" id="diff-haut">
             <label>En cours de diffusion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Dernière mise à jour: 15h00</small></label>
-            <button class="btn btn-lg btn-default boutton col-md-offset-10">Tout effacer</button>
+            <?php $diff = $this->diff->diff();?>
+            <button name="id" value="<?php echo $diff['id'];?>" class="btn btn-lg btn-default boutton col-md-offset-10" form="delall-form" >Tout effacer</button>
         </form>
-        <div class="col-md-12">
-            <table class="table table-responsive diff-tab-principal">
+        <div class="col-md-12" id="drop">
+            <table class="table table-responsive diff-tab-principal" id="tab-1">
                 <?php
-                $image = $this->diff->newsdiff();
-                foreach ($image as $data) {
+                $imagediff = $this->diff->newsdiff();
+                foreach ($imagediff as $data) {
                     ?>
                     <tr>
                         <td>
@@ -60,10 +63,10 @@ $this->setPageTitle('Diffusion de News');
                             <h2><?php echo $data['duree'].'s';?></h2>
                         </td>
                         <td>
-                            <a href="#"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></a>
+                            <button><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></button>
                         </td>
                         <td>
-                            <a href="#"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                            <button name="id" value="<?php echo $data['id']; ?>" form="remove-form"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                     <?php
@@ -90,7 +93,7 @@ $this->setPageTitle('Diffusion de News');
                     </ul>
                 </div>
             </div>
-        <table class="table table-responsive diff-tab-bord">
+        <table class="table table-responsive diff-tab-bord" id="tab-2">
             <?php
             foreach ($this->news as $data){
             ?>
@@ -117,7 +120,7 @@ $this->setPageTitle('Diffusion de News');
                                     <p>Le : <?php echo $data['date']?></p>
                                 </td>
                             </tr>
-                            <?php foreach ($image as $img){
+                            <?php foreach ($imagediff as $img){
                                 if ($img['id'] ==$data['id']){
                                     echo "<span id='diff'>Diff</span>";
                                 }
@@ -125,7 +128,7 @@ $this->setPageTitle('Diffusion de News');
                         </table>
                     </td>
                     <td>
-                        <a href="#"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></a>
+                        <button name="id" value="<?php echo $data['id']; ?>" form="addnews-form"><span class="glyphicon glyphicon-plus-sign bottom-right" aria-hidden="true"></span></button>
                     </td>
 
                 </tr>
@@ -135,3 +138,12 @@ $this->setPageTitle('Diffusion de News');
         </table>
     </div>
 </div>
+<form id="delall-form" action="/web/3Inews/index.php?controller=news&action=delnews" method="POST">
+
+</form>
+<form id="addnews-form" action="/web/3Inews/index.php?controller=news&action=add" method="POST">
+
+</form>
+<form id="remove-form" action="/web/3Inews/index.php?controller=news&action=remove" method="POST">
+
+</form>
